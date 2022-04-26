@@ -14,11 +14,13 @@ def send_email(email: str, context: dict):
     content = template.render(context)
     
     email = EmailMultiAlternatives(
-        'Un correo de prueba',
+        'Congreso',
         'Congreso',
         settings.EMAIL_HOST_USER,
         [email]   
     )
+    
+    print('email send')
     
     email.attach_alternative(content, 'text/html')
     email.send()
@@ -40,7 +42,8 @@ def course_payment(request):
             description=description,
             source="tok_visa",
             idempotency_key=id,
-            api_key='rk_test_51KqnPcG8JjahQ8bbtZvX1XgrqY8MaqXpiNNB30lxnNUMTWjUIVQ82T4WZePzS8d9BqjnEt3hA1QR5YaE4mvau3MK00Sh6WobP8'
+            # api_key='rk_test_51KqnPcG8JjahQ8bbtZvX1XgrqY8MaqXpiNNB30lxnNUMTWjUIVQ82T4WZePzS8d9BqjnEt3hA1QR5YaE4mvau3MK00Sh6WobP8'
+            api_key='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'
         )
         
         context = {
@@ -48,10 +51,11 @@ def course_payment(request):
             'user': user
         }
         
+        
         send_email(user.email, context)
         
         return Response({'ok': True})
     except stripe.error.StripeError as e:
-        return Response({'ok': False})
+        raise Response({'ok': False})
     
     
