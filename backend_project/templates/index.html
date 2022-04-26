@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .container {
+            margin: 30px 50px;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        .body_cont {
+            margin: 50px;
+        }
+
+        .body_cont p {
+            margin: 30px;
+        }
+
+        .body_cont p span {
+            font-weight: 600;
+        }
+
+        .swagger {
+            text-align: center;
+        }
+
+        .qr_container {
+           display: flex;
+           width: 100%;
+           justify-content: center;
+        }
+
+        .qr_container .qr {
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">
+            XXIII Congreso Internacional de la Federación Mexicana de Asociaciones y 
+            Colegios de Endoscopia Ginecológica, A.C.
+        </h1>
+        <div class="body_cont">
+            <p class="">
+                <span>Estimado(a):</span> {{ user.get_full_name }}
+            </p>
+            <p class="">
+                <span>CURSOS:</span>
+            </p>
+            <p class="">
+                <span>PRE CONGRESO:</span> {{ user.course_pre.text }}
+            </p>
+            <p class="">
+                <span>TRANS CONGRESO:</span> {{ user.course_trans.text }}
+            </p>
+            <p class="">
+                <span>Monto de Inscripción:</span> $ {{ price_pay }}.°°
+            </p>
+            <p>
+                Por este conducto confirmamos su INSCRIPCIÓN AL XXIII CONGRESO INTERNACIONAL DE LA FEDERACION MEXICANA DE ASOCIACIONES Y COLEGIOS DE ENDOSCOPIA GINECOLOGICA, A.C. a celebrarse del 07 al 10 de Septiembre de 2022, con Sede en el CECONEXPO MORELIA, Michoacán, México.
+            </p>
+        </div>
+        <h4 class="swagger">
+            PARA DARLE MAYOR AGILIDAD A SU ACCESO, LE SUGERIMOS MUESTRE 
+            EN SITIO SU SMARTPHONE CON ESTE CODIGO QR PARA LA IMPRESIÓN 
+            DE SU GAFETE.
+        </h4>
+        <div class="qr_container">
+            <img class="qr" src="https://qrcode.tec-it.com/API/QRCode?data=smsto%3A555-555-5555%3AGenerador+de+C%C3%B3digos+QR+de+TEC-IT" alt="qr">
+        </div>
+        <p>Cordialmente:</p>
+        <p>COMITÉ ORGANIZADOR XXIII CONGRESO INTERNACIONAL FEMEG</p>
+    </div>
+</body>
+</html>
