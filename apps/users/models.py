@@ -17,7 +17,7 @@ class Users(models.Model):
     specialty = models.CharField(max_length=50)
     professional_license = models.CharField(max_length=255)
     specialty_certificate = models.CharField(max_length=255)
-    price_pay = models.BigIntegerField(null=True)
+    price_pay = models.BigIntegerField(null=True, default=0)
     
     course_pre = models.ForeignKey(
         Course, 

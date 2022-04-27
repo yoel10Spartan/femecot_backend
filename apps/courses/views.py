@@ -26,13 +26,11 @@ def buy_courses(request):
         four_persons = CoursesPay.objects.filter(id=4).first()
         if four_persons.persons >= 16:
             raise Response({'detail': 'Error'})
-        CoursesPay.objects.filter(id=4).update(persons=four_persons.persons+1)
         
     if course_pre == 5:
         five_persons = CoursesPay.objects.filter(id=5).first()
         if five_persons.persons >= 16:
             raise Response({'detail': 'Error'})
-        CoursesPay.objects.filter(id=5).update(persons=five_persons.persons+1)
     
     course_pre_select = None
     course_transco_select = None

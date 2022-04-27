@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from django.conf import settings
 
 import stripe
+from apps.courses.models import CoursesPay
 
 from apps.users.models import Users
 
@@ -19,8 +20,6 @@ def send_email(email: str, context: dict):
         settings.EMAIL_HOST_USER,
         [email]   
     )
-    
-    print('email send')
     
     email.attach_alternative(content, 'text/html')
     email.send()
@@ -51,6 +50,16 @@ def course_payment(request):
             'user': user
         }
         
+        course_pre = user.course_pre
+        course_trans = user.course_trans
+        
+        if course_pre.id == 4:
+            four_persons = CoursesPay.objects.filter(id=4).first()
+            CoursesPay.objects.filter(id=4).update(persons=four_persons.persons+1)
+            
+        if course_trans.id == 5:
+            five_persons = CoursesPay.objects.filter(id=5).first()
+            CoursesPay.objects.filter(id=5).update(persons=five_persons.persons+1)
         
         send_email(user.email, context)
         
