@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -23,12 +23,8 @@
             text-align: center;
         }
 
-        .body_cont {
-            margin: 50px;
-        }
-
         .body_cont p {
-            margin: 30px;
+            margin: 10px;
         }
 
         .body_cont p span {
@@ -59,6 +55,7 @@
             XXIII Congreso Internacional de la Federación Mexicana de Asociaciones y 
             Colegios de Endoscopia Ginecológica, A.C.
         </h1>
+        <img src={{ portada }} height="200px" style="object-fit: contain;" alt="portada" />
         <div class="body_cont">
             <p class="">
                 <span>Estimado(a):</span> {{ user.get_full_name }}
@@ -85,10 +82,11 @@
             DE SU GAFETE.
         </h4>
         <div class="qr_container">
-            <img class="qr" src="https://qrcode.tec-it.com/API/QRCode?data=smsto%3A555-555-5555%3AGenerador+de+C%C3%B3digos+QR+de+TEC-IT" alt="qr">
+            <img class="qr" src={{ image }} alt="qr">
         </div>
         <p>Cordialmente:</p>
         <p>COMITÉ ORGANIZADOR XXIII CONGRESO INTERNACIONAL FEMEG</p>
     </div>
 </body>
 </html>
+

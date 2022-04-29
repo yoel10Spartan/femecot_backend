@@ -1,5 +1,6 @@
 from statistics import mode
 from django.db import models
+from apps.invoices.models import Invoice
 
 from apps.courses.models import Course
 
@@ -31,9 +32,14 @@ class Users(models.Model):
         null=True,
         related_name='%(app_label)s_%(class)s_related_trans'
     )
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE, null=True)
     
     def get_full_name(self) -> str:
         return '{} {}'.format(self.name, self.last_name)
     
     def __str__(self) -> str:
         return self.get_full_name()
+    
+class QR(models.Model):
+    text = models.CharField(max_length=50)
+    qr = models.ImageField(upload_to='qr/')
