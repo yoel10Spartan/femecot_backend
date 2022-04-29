@@ -33,6 +33,7 @@ pydantic==1.9.0
 pydyf==0.1.2
 pyHanko==0.13.0
 pyhanko-certvalidator==0.19.5
+PyMySQL==1.0.2
 pyparsing==3.0.8
 PyPDF3==1.0.6
 pyphen==0.12.0
