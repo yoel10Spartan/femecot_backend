@@ -20,3 +20,14 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# [Service]
+# User=root
+# Group=www-data
+# WorkingDirectory=/home/congreso_backend
+# ExecStart=/home/congreso_backend/env/bin/gunicorn \
+#           --access-logfile - \
+#           --workers 3 \
+#           --bind unix:/run/gunicorn.sock \
+#           backend_project.wsgi:application
