@@ -61,8 +61,9 @@ def course_payment(request):
             description=description,
             source="tok_visa",
             idempotency_key=id,
-            api_key='rk_test_51KqnPcG8JjahQ8bbtZvX1XgrqY8MaqXpiNNB30lxnNUMTWjUIVQ82T4WZePzS8d9BqjnEt3hA1QR5YaE4mvau3MK00Sh6WobP8'
+            # api_key='rk_test_51KqnPcG8JjahQ8bbtZvX1XgrqY8MaqXpiNNB30lxnNUMTWjUIVQ82T4WZePzS8d9BqjnEt3hA1QR5YaE4mvau3MK00Sh6WobP8'
             # api_key='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'
+            api_key='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'
         )
         
         course_pre = user.course_pre
