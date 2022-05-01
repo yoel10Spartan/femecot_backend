@@ -16,8 +16,9 @@ class Users(models.Model):
     cell_phone_number = models.BigIntegerField(null=True)
     company_institution = models.CharField(max_length=50)
     specialty = models.CharField(max_length=50)
-    professional_license = models.CharField(max_length=255)
-    specialty_certificate = models.CharField(max_length=255)
+    professional_license = models.CharField(max_length=255, null=True, blank=True)
+    specialty_certificate = models.CharField(max_length=255, null=True, blank=True)
+    
     price_pay = models.BigIntegerField(null=True, default=0)
     
     course_pre = models.ForeignKey(
@@ -26,13 +27,19 @@ class Users(models.Model):
         null=True,
         related_name='%(app_label)s_%(class)s_related_pre'
     )
+    
     course_trans = models.ForeignKey(
         Course, 
         on_delete=models.SET_NULL, 
         null=True,
         related_name='%(app_label)s_%(class)s_related_trans'
     )
-    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE, null=True)
+    
+    invoice = models.ForeignKey(
+        Invoice, 
+        on_delete=models.CASCADE, 
+        null=True
+    )
     
     def get_full_name(self) -> str:
         return '{} {}'.format(self.name, self.last_name)
