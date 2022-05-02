@@ -51,11 +51,13 @@ def send_email(email_str: str, context: dict):
 @api_view(['POST'])
 def course_payment(request):
     user_id = request.data.get('user_id')
-    id = request.data.get('id')
-    description = request.data.get('description')
     
     user = Users.objects.filter(pk=user_id).first()
     amount = user.price_pay * 100
+    
+    if amount > 10:
+        id = request.data.get('id')
+        description = request.data.get('description')
     
     try:
         
