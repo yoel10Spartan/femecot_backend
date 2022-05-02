@@ -116,6 +116,8 @@ class UserViewSet(viewsets.ModelViewSet):
         id = data.data['id']
         name = '{}.jpg'.format(id)
         
+        create_qr(str(id), name)
+        
         request.data['id'] = id
         calc_price(request.data)
         
@@ -123,8 +125,6 @@ class UserViewSet(viewsets.ModelViewSet):
         
         if data_invoice:
             create_invoice(request.data['invoice_data'], id)
-        
-        create_qr(str(id), name)
         
         user = Users.objects.filter(pk=id).first()
         user_serializer = UserSerializer(user)
