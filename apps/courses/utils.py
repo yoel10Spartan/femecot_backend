@@ -61,7 +61,7 @@ prices = [
     { 
         'id': 2,
         'type': 'NO FEDERADOS', 
-        'price': 6000, 
+        'price': 7000, 
         'valid': '2022-09-06 00:00:00', 
         'starting': '2022-09-07 00:00:00', 
         'future_price': 8000,
