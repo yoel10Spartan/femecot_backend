@@ -132,8 +132,8 @@ from decouple import config
 
 EMAIL_HOST = 'smtp.googlemail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'munozzecuayoel@gmail.com'
-EMAIL_HOST_PASSWORD = 'djyoel.789'
+EMAIL_HOST_USER = 'munozzecuayoel.spartan@gmail.com'
+EMAIL_HOST_PASSWORD = 'spartan.123'
 EMAIL_USE_TLS = True
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
