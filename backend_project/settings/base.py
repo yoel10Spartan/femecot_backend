@@ -130,10 +130,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 from decouple import config
 
-EMAIL_HOST = 'smtp.googlemail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'munozzecuayoel.spartan@gmail.com'
-EMAIL_HOST_PASSWORD = 'spartan.123'
+# EMAIL_HOST = 'smtp.googlemail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'munozzecuayoel.spartan@gmail.com'
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_USE_TLS = True
+
+EMAIL_HOST = 'smtp.registroparacongresos.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'femeg@registroparacongresos.com'
+EMAIL_HOST_PASSWORD = 'congresomorelia2022.'
 EMAIL_USE_TLS = True
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

@@ -37,8 +37,8 @@ def send_email(email_str: str, context: dict):
             settings.EMAIL_HOST_USER,
             [
                 email_str, 
-                # 'femengi@yahoo.com.mx', 
-                # 'contacto@ole-sfera.com'
+                'femengi@yahoo.com.mx', 
+                'contacto@ole-sfera.com'
             ]   
         )
         
@@ -55,7 +55,7 @@ def course_payment(request):
     user = Users.objects.filter(pk=user_id).first()
     amount = user.price_pay * 100
     
-    if amount > 10:
+    if amount >= 10:
         id = request.data.get('id')
         description = request.data.get('description')
     
@@ -68,15 +68,14 @@ def course_payment(request):
                 description=description,
                 source="tok_visa",
                 idempotency_key=id,
-                # api_key='rk_test_51KqnPcG8JjahQ8bbtZvX1XgrqY8MaqXpiNNB30lxnNUMTWjUIVQ82T4WZePzS8d9BqjnEt3hA1QR5YaE4mvau3MK00Sh6WobP8'
-                # api_key='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'
                 api_key='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'
             )
+            # api_key='rk_test_51KqnPcG8JjahQ8bbtZvX1XgrqY8MaqXpiNNB30lxnNUMTWjUIVQ82T4WZePzS8d9BqjnEt3hA1QR5YaE4mvau3MK00Sh6WobP8'
+            # api_key='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'
         
         course_pre = user.course_pre
         course_trans = user.course_trans
     
-        
         if course_pre.id == 4:
             four_persons = CoursesPay.objects.filter(id=4).first()
             CoursesPay.objects.filter(id=4).update(persons=four_persons.persons+1)
