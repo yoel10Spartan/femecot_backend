@@ -93,8 +93,8 @@ def course_payment(request):
         context = {
             'price_pay': user.price_pay,
             'user': user,
-            'image': 'http://144.126.210.41:8000/media/{}.jpg'.format(user.id),
-            'portada': 'http://144.126.210.41:8000/media/portada.jpg'
+            'image': 'https://www.congreso.icu/media/{}.jpg'.format(user.id),
+            'portada': 'https://www.congreso.icu/media/portada.jpg'
         }
         
         send_email(user.email, context)
@@ -135,8 +135,8 @@ def generate_pdf(request):
     context = {
         'price_pay': user.price_pay,
         'user': user,
-        'image': 'http://144.126.210.41:8000/media/{}.jpg'.format(user.id),
-        'portada': 'http://144.126.210.41:8000/media/portada.jpg'
+        'image': 'https://www.congreso.icu/media/{}.jpg'.format(user.id),
+        'portada': 'https://www.congreso.icu/media/portada.jpg'
     }
     
     template = get_template('index.html')
@@ -152,7 +152,7 @@ def generate_pdf(request):
     # 'link': 'http://144.126.210.41/media/{}.pdf'.format(user.id)
     
     return Response({
-        'link': 'http://144.126.210.41:8000/media/{}.pdf'.format(user.id)
+        'link': 'https://www.congreso.icu/media/{}.pdf'.format(user.id)
     })
     
 # <img class="qr" src="https://qrcode.tec-it.com/API/QRCode?data=smsto%3A555-555-5555%3AGenerador+de+C%C3%B3digos+QR+de+TEC-IT" alt="qr">
