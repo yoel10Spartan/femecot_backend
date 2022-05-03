@@ -28,8 +28,10 @@ from django.template.loader import render_to_string
 def send_email(email_str: str, context: dict):
 
     try:
-        template = get_template('index.html')
-        content = template.render(context)
+        # template = get_template('index.html')
+        # content = template.render(context)
+        
+        content = render_to_string(template_name='index.html', context=context)
         
         email = EmailMultiAlternatives(
             'Congreso',
