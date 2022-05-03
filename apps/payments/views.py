@@ -91,12 +91,16 @@ def course_payment(request):
             #     api_key='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'
             # )
             
-            customer = stripe.Customer.create(
-               description=description,
-               address=user.address,
-               email=user.email,
-               name=user.get_full_name(),
-               phone=user.phone_number
+            customer_stripe = stripe.Customer.create(
+                description=description,
+                address={
+                    'line1': user.address,
+                    'postal_code': user.cp,
+                    'state': user.state,
+                },
+                email=user.email,
+                name=user.name,
+                phone=user.phone_number
             )
             
             stripe.PaymentIntent.create(
@@ -106,7 +110,7 @@ def course_payment(request):
                 receipt_email='munozzecuayoel@gmail.com',
                 payment_method=id,
                 description=description,
-                customer=customer['id']
+                customer=customer_stripe['id']
             )
             
             # api_key='rk_test_51KqnPcG8JjahQ8bbtZvX1XgrqY8MaqXpiNNB30lxnNUMTWjUIVQ82T4WZePzS8d9BqjnEt3hA1QR5YaE4mvau3MK00Sh6WobP8'
