@@ -27,42 +27,42 @@ from django.template.loader import render_to_string
 
 stripe.api_key = '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'
 
-def send_email(email_str: str, context: dict):
+# def send_email(email_str: str, context: dict):
 
-    try:
-        template = get_template('index.html')
+#     try:
+#         template = get_template('index.html')
         
-        print('1')
-        content = template.render(context)
-        print('envolve')
+#         print('1')
+#         content = template.render(context)
+#         print('envolve')
         
-        # content = render_to_string(template_name='index.html', context=context)
+#         # content = render_to_string(template_name='index.html', context=context)
         
-        print('2')
+#         print('2')
         
-        email = EmailMultiAlternatives(
-            'Congreso',
-            'Congreso',
-            settings.EMAIL_HOST_USER,
-            [
-                email_str,
-                'femengi@yahoo.com.mx',
-                'contacto@ole-sfera.com'
-            ]
-        )
+#         email = EmailMultiAlternatives(
+#             'Congreso',
+#             'Congreso',
+#             settings.EMAIL_HOST_USER,
+#             [
+#                 email_str,
+#                 'femengi@yahoo.com.mx',
+#                 'contacto@ole-sfera.com'
+#             ]
+#         )
         
-        print('3')
+#         print('3')
 
-        email.attach_alternative(content, 'text/html')
+#         email.attach_alternative(content, 'text/html')
         
-        print('4')
+#         print('4')
         
-        email.send()
+#         email.send()
         
-        print('5')
-    except:
-        print('error')
-        raise Response('Error')
+#         print('5')
+#     except:
+#         print('error')
+#         raise Response('Error')
 
 @api_view(['POST'])
 def course_payment(request):
@@ -155,7 +155,7 @@ def course_payment(request):
         
         print('Send Email')
 
-        send_email(user.email, context)
+        # send_email(user.email, context)
 
         print('Finish Email')
 
