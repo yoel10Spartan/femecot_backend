@@ -75,7 +75,7 @@ def course_payment(request):
         id = request.data.get('id')
         description = request.data.get('description')
         
-    amount = 10 * 100
+    # amount = 10 * 100
 
     try:
 
@@ -95,7 +95,8 @@ def course_payment(request):
                 amount=amount, 
                 currency='mxn', 
                 payment_method_types=['card'],
-                receipt_email='munozzecuayoel@gmail.com'
+                receipt_email='munozzecuayoel@gmail.com',
+                payment_method=id
             )
 
             
