@@ -27,40 +27,37 @@ from django.template.loader import render_to_string
 
 def send_email(email_str: str, context: dict):
 
-    try:
-        template = get_template('index.html')
-        
-        print('1')
-        content = template.render(context)
-        print('envolve')
-        
-        # content = render_to_string(template_name='index.html', context=context)
-        
-        print('2')
-        
-        email = EmailMultiAlternatives(
-            'Congreso',
-            'Congreso',
-            settings.EMAIL_HOST_USER,
-            [
-                email_str,
-                'femengi@yahoo.com.mx',
-                'contacto@ole-sfera.com'
-            ]
-        )
-        
-        print('3')
+    template = get_template('index.html')
+    
+    print('1')
+    content = template.render(context)
+    print('envolve')
+    
+    # content = render_to_string(template_name='index.html', context=context)
+    
+    print('2')
+    
+    email = EmailMultiAlternatives(
+        'Congreso',
+        'Congreso',
+        settings.EMAIL_HOST_USER,
+        [
+            email_str,
+            'femengi@yahoo.com.mx',
+            'contacto@ole-sfera.com'
+        ]
+    )
+    
+    print('3')
 
-        email.attach_alternative(content, 'text/html')
-        
-        print('4')
-        
-        email.send()
-        
-        print('5')
-    except:
-        print('error')
-        raise Response('Error')
+    email.attach_alternative(content, 'text/html')
+    
+    print('4')
+    
+    email.send()
+    
+    print('5')
+    
 
 @api_view(['POST'])
 def course_payment(request):
