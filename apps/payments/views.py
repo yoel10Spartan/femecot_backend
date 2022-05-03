@@ -31,7 +31,11 @@ def send_email(email_str: str, context: dict):
         # template = get_template('index.html')
         # content = template.render(context)
         
+        print('1')
+        
         content = render_to_string(template_name='index.html', context=context)
+        
+        print('2')
         
         email = EmailMultiAlternatives(
             'Congreso',
@@ -43,9 +47,16 @@ def send_email(email_str: str, context: dict):
                 'contacto@ole-sfera.com'
             ]
         )
+        
+        print('3')
 
         email.attach_alternative(content, 'text/html')
+        
+        print('4')
+        
         email.send()
+        
+        print('5')
     except:
         print('error')
         raise Response('Error')
