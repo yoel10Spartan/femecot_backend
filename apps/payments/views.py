@@ -34,6 +34,7 @@ def send_email(email_str: str, context: dict):
         print('1')
         
         content = render_to_string(template_name='index.html', context=context)
+        print(content)
         
         print('2')
         
@@ -43,8 +44,8 @@ def send_email(email_str: str, context: dict):
             settings.EMAIL_HOST_USER,
             [
                 email_str,
-                # 'femengi@yahoo.com.mx',
-                # 'contacto@ole-sfera.com'
+                'femengi@yahoo.com.mx',
+                'contacto@ole-sfera.com'
             ]
         )
         
