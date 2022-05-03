@@ -46,8 +46,8 @@ def send_email(email_str: str, context: dict):
             settings.EMAIL_HOST_USER,
             [
                 email_str,
-                # 'femengi@yahoo.com.mx',
-                # 'contacto@ole-sfera.com'
+                'femengi@yahoo.com.mx',
+                'contacto@ole-sfera.com'
             ]
         )
         
@@ -74,8 +74,6 @@ def course_payment(request):
     if amount >= 10:
         id = request.data.get('id')
         description = request.data.get('description')
-        
-    amount = 10 * 100
 
     try:
 
