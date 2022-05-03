@@ -27,37 +27,40 @@ from django.template.loader import render_to_string
 
 def send_email(email_str: str, context: dict):
 
-    template = get_template('index.html')
-    
-    print('1')
-    content = template.render(context)
-    print('envolve')
-    
-    # content = render_to_string(template_name='index.html', context=context)
-    
-    print('2')
-    
-    email = EmailMultiAlternatives(
-        'Congreso',
-        'Congreso',
-        settings.EMAIL_HOST_USER,
-        [
-            email_str,
-            'femengi@yahoo.com.mx',
-            'contacto@ole-sfera.com'
-        ]
-    )
-    
-    print('3')
+    try:
+        template = get_template('index.html')
+        
+        print('1')
+        content = template.render(context)
+        print('envolve')
+        
+        # content = render_to_string(template_name='index.html', context=context)
+        
+        print('2')
+        
+        email = EmailMultiAlternatives(
+            'Congreso',
+            'Congreso',
+            settings.EMAIL_HOST_USER,
+            [
+                email_str,
+                'femengi@yahoo.com.mx',
+                'contacto@ole-sfera.com'
+            ]
+        )
+        
+        print('3')
 
-    email.attach_alternative(content, 'text/html')
-    
-    print('4')
-    
-    email.send()
-    
-    print('5')
-    
+        email.attach_alternative(content, 'text/html')
+        
+        print('4')
+        
+        email.send()
+        
+        print('5')
+    except:
+        print('error')
+        raise Response('Error')
 
 @api_view(['POST'])
 def course_payment(request):
@@ -115,8 +118,8 @@ def course_payment(request):
         context = {
             'price_pay': user.price_pay,
             'user': user,
-            'image': 'https://congreso.icu/media/{}.jpg'.format(user.id),
-            'portada': 'https://congreso.icu/media/portada.jpg'
+            'image': '',
+            'portada': ''
         }
         
         print('Send Email')
