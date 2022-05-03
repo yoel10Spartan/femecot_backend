@@ -55,7 +55,7 @@ def send_email(email_str: str, context: dict):
         
         print('4')
         
-        email.send(fail_silently=True)
+        print(email.send())
         
         print('5')
     except:
