@@ -75,7 +75,7 @@ def course_payment(request):
         id = request.data.get('id')
         description = request.data.get('description')
         
-    # amount = 10 * 100
+    amount = 10 * 100
 
     try:
 
@@ -98,7 +98,6 @@ def course_payment(request):
                 receipt_email='munozzecuayoel@gmail.com',
                 payment_method=id
             )
-
             
             # api_key='rk_test_51KqnPcG8JjahQ8bbtZvX1XgrqY8MaqXpiNNB30lxnNUMTWjUIVQ82T4WZePzS8d9BqjnEt3hA1QR5YaE4mvau3MK00Sh6WobP8'
             # api_key='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'
