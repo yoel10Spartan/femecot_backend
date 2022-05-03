@@ -103,7 +103,7 @@ def course_payment(request):
                 phone=user.phone_number
             )
             
-            stripe.PaymentIntent.create(
+            paymentin = stripe.PaymentIntent.create(
                 amount=amount, 
                 currency='mxn', 
                 payment_method_types=['card'],
@@ -111,6 +111,12 @@ def course_payment(request):
                 payment_method=id,
                 description=description,
                 customer=customer_stripe['id']
+            )
+            
+            stripe.PaymentIntent.confirm(
+                paymentin['id'],
+                payment_method=id,
+                receipt_email=user.email
             )
             
             # api_key='rk_test_51KqnPcG8JjahQ8bbtZvX1XgrqY8MaqXpiNNB30lxnNUMTWjUIVQ82T4WZePzS8d9BqjnEt3hA1QR5YaE4mvau3MK00Sh6WobP8'
