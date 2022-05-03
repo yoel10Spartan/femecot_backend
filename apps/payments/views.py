@@ -26,10 +26,11 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 
 def send_email(email_str: str, context: dict):
-    template = get_template('index.html')
-    content = template.render(context)
 
     try:
+        template = get_template('index.html')
+        content = template.render(context)
+        
         email = EmailMultiAlternatives(
             'Congreso',
             'Congreso',
@@ -60,7 +61,9 @@ def course_payment(request):
 
     try:
 
-        if amount > 10:
+        print('Init Amount')
+
+        if amount >= 10:
             charge = stripe.Charge.create(
                 amount=amount,
                 currency="mxn",
@@ -72,8 +75,12 @@ def course_payment(request):
             # api_key='rk_test_51KqnPcG8JjahQ8bbtZvX1XgrqY8MaqXpiNNB30lxnNUMTWjUIVQ82T4WZePzS8d9BqjnEt3hA1QR5YaE4mvau3MK00Sh6WobP8'
             # api_key='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'
 
+        print('Finish Mount')
+
         course_pre = user.course_pre
         course_trans = user.course_trans
+        
+        print('Init Courses')
 
         if course_pre.id == 4:
             four_persons = CoursesPay.objects.filter(id=4).first()
@@ -92,14 +99,20 @@ def course_payment(request):
         # 'image': 'https://www.congreso.icu/media/{}.jpg'.format(user.id),
         #     'portada': 'https://www.congreso.icu/media/portada.jpg'
 
+        print('init context')
+
         context = {
             'price_pay': user.price_pay,
             'user': user,
             'image': 'https://congreso.icu/media/{}.jpg'.format(user.id),
             'portada': 'https://congreso.icu/media/portada.jpg'
         }
+        
+        print('Send Email')
 
         send_email(user.email, context)
+
+        print('Finish Email')
 
         return Response({'ok': True})
     except stripe.error.StripeError as e:
