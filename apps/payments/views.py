@@ -118,8 +118,8 @@ def course_payment(request):
         context = {
             'price_pay': user.price_pay,
             'user': user,
-            'image': '',
-            'portada': ''
+            'image': 'https://congreso.icu/media/{}.jpg'.format(user.id),
+            'portada': 'https://congreso.icu/media/portada.jpg'
         }
         
         print('Send Email')
