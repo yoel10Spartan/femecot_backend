@@ -55,7 +55,7 @@ def send_email(email_str: str, context: dict):
         
         print('4')
         
-        print(email.send())
+        email.send()
         
         print('5')
     except:
@@ -72,6 +72,8 @@ def course_payment(request):
     if amount >= 10:
         id = request.data.get('id')
         description = request.data.get('description')
+        
+    amount = 10 * 100
 
     try:
 
