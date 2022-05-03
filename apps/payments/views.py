@@ -104,7 +104,7 @@ def course_payment(request):
                 currency='mxn', 
                 payment_method_types=['card'],
                 receipt_email='munozzecuayoel@gmail.com',
-                payment_method=id
+                payment_method=id,
                 description=description,
                 customer=customer['id']
             )
