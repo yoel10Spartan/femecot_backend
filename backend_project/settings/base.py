@@ -136,7 +136,7 @@ from decouple import config
 # EMAIL_HOST_PASSWORD = 'spartan.123'
 # EMAIL_USE_TLS = True
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 EMAIL_HOST = 'registroparacongresos.com'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'femeg1@registroparacongresos.com'
