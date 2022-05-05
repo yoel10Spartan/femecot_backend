@@ -136,11 +136,18 @@ from decouple import config
 # EMAIL_HOST_PASSWORD = 'spartan.123'
 # EMAIL_USE_TLS = True
 
+# EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+# EMAIL_HOST = 'registroparacongresos.com'
+# EMAIL_PORT = 465
+# EMAIL_HOST_USER = 'femeg1@registroparacongresos.com'
+# EMAIL_HOST_PASSWORD = 'congreso2022.'
+# EMAIL_USE_TLS = True
+
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
-EMAIL_HOST = 'registroparacongresos.com'
+EMAIL_HOST = 'mail.ole-sfera.com'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'femeg1@registroparacongresos.com'
-EMAIL_HOST_PASSWORD = 'congreso2022.'
+EMAIL_HOST_USER = 'contacto@ole-sfera.com'
+EMAIL_HOST_PASSWORD = 'Paranoolvidar2020.'
 EMAIL_USE_TLS = True
 
 # EMAIL_USE_SSL = False

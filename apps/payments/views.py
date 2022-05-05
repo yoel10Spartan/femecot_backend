@@ -2,6 +2,7 @@ import os
 from tkinter.messagebox import NO
 from unittest import result
 from django.http import HttpRequest, HttpResponse
+from django.shortcuts import redirect
 from rest_framework.decorators import api_view, throttle_classes
 from rest_framework.response import Response
 from django.conf import settings
@@ -26,19 +27,15 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 
 stripe.api_key = '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'
+# stripe.api_key = 'sk_test_51Kw9l2B5zVOhjdF5COg0erWvOMtaTzyvGGIBVfkj47YRQFppz95vQMoAeMb7Htu9AbFsDv0HAnupz6I7YsLbuCFp00IVmqBzpf'
 
 def send_email(email_str: str, context: dict):
-
     try:
         template = get_template('index.html')
         
-        print('1')
         content = template.render(context)
-        print('envolve')
         
         # content = render_to_string(template_name='index.html', context=context)
-        
-        print('2')
         
         email = EmailMultiAlternatives(
             'Congreso',
@@ -51,26 +48,66 @@ def send_email(email_str: str, context: dict):
                 'munozzecuayoel@gmail.com',
             ]
         )
-        
-        print('3')
-
         email.attach_alternative(content, 'text/html')
-        
-        print('4')
-        
         email.send()
-        
-        print('5')
     except:
         print('error')
         raise Response('Error')
+    
+@api_view(['POST'])
+def send_email_user(request):
+    user_id = request.data['user_id']
+    user = Users.objects.filter(pk=user_id).first()
+    
+    course_pre = user.course_pre
+    course_trans = user.course_trans
+    
+    if course_pre.id == 4:
+        four_persons = CoursesPay.objects.filter(id=4).first()
+        CoursesPay.objects.filter(id=4).update(persons=four_persons.persons+1)
+
+    if course_trans.id == 5:
+        five_persons = CoursesPay.objects.filter(id=5).first()
+        CoursesPay.objects.filter(id=5).update(persons=five_persons.persons+1)
+
+    context = {
+        'price_pay': user.price_pay,
+        'user': user,
+        'image': 'https://congreso.icu/media/{}.jpg'.format(user.id),
+        'portada': 'https://congreso.icu/media/portada_photo.jpg'
+    }
+    
+    for i in range(10):
+        send_email(user.email, context)
+    
+    return Response({'ok': True})
 
 @api_view(['POST'])
 def create_checkout_session(request):
+    user_id = request.data['user_id']
+    user = Users.objects.filter(pk=user_id).first()
+    amount = user.price_pay * 100
+    
+    course_pre = user.course_pre
+    course_trans = user.course_trans
+    
+    if amount < 10:
+        redirect('https://congresosfemeg.xyz/#/success_pay');
+        return Response({'session': 0})
+    
+    name_product_user = 'Producto para {} - nombre {} - {} {}'.format(
+        user.id, 
+        user.name,
+        course_pre,
+        course_trans,
+    )
+    
+    product = stripe.Product.create(name=name_product_user)
+    
     price = stripe.Price.create(
-        unit_amount=2000,
+        unit_amount=amount,
         currency="mxn",
-        product="prod_Ld7YOETSr4IjUg",
+        product=product['id'],
     )
     
     try:
@@ -81,14 +118,17 @@ def create_checkout_session(request):
                     'quantity': 1
                 },
             ],  
-            success_url='https://congresosfemeg.xyz/#/payment',
+            success_url='https://congresosfemeg.xyz/#/success_pay',
             cancel_url='https://congresosfemeg.xyz/#/payment',
             mode='payment',
         )
+        
+        # success_url='https://congresosfemeg.xyz/#/success_pay',
+        # cancel_url='https://congresosfemeg.xyz/#/payment',
+        
+        return Response({'session': checkout_session['id']})
     except Exception as e:
         return str(e)
-    
-    return Response({'session': checkout_session['id']})
 
 @api_view(['POST'])
 def course_payment(request):
@@ -225,7 +265,7 @@ def generate_pdf(request):
         'price_pay': user.price_pay,
         'user': user,
         'image': 'https://congreso.icu/media/{}.jpg'.format(user.id),
-        'portada': 'https://congreso.icu/media/portada.jpg'
+        'portada': 'https://congreso.icu/media/portada_photo.jpg'
     }
 
     template = get_template('index.html')
