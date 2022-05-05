@@ -134,7 +134,6 @@ def create_checkout_session(request):
             cancel_url='https://congresosfemeg.xyz/#/payment',
             mode='payment',
             customer=customer['id'],
-            customer_email=user.email,
         )
         
         # success_url='https://congresosfemeg.xyz/#/success_pay',
