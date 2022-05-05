@@ -111,6 +111,18 @@ def create_checkout_session(request):
     )
     
     try:
+        customer = stripe.Customer.create(
+            description=name_product_user,
+            address={
+                'line1': user.address,
+                'postal_code': user.cp,
+                'state': user.state,
+            },
+            email=user.email,
+            name=user.name,
+            phone=user.phone_number
+        )
+        
         checkout_session = stripe.checkout.Session.create(
             line_items=[
                 {
@@ -121,6 +133,8 @@ def create_checkout_session(request):
             success_url='https://congresosfemeg.xyz/#/success_pay',
             cancel_url='https://congresosfemeg.xyz/#/payment',
             mode='payment',
+            customer=customer['id'],
+            customer_email=user.email,
         )
         
         # success_url='https://congresosfemeg.xyz/#/success_pay',
