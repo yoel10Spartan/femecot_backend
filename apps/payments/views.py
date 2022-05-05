@@ -66,6 +66,31 @@ def send_email(email_str: str, context: dict):
         raise Response('Error')
 
 @api_view(['POST'])
+def create_checkout_session(request):
+    price = stripe.Price.create(
+        unit_amount=2000,
+        currency="mxn",
+        product="prod_Ld7YOETSr4IjUg",
+    )
+    
+    try:
+        checkout_session = stripe.checkout.Session.create(
+            line_items=[
+                {
+                    'price': price['id'],
+                    'quantity': 1
+                },
+            ],  
+            success_url='https://congresosfemeg.xyz/#/payment',
+            cancel_url='https://congresosfemeg.xyz/#/payment',
+            mode='payment',
+        )
+    except Exception as e:
+        return str(e)
+    
+    return Response({'session': checkout_session['id']})
+
+@api_view(['POST'])
 def course_payment(request):
     user_id = request.data.get('user_id')
 
