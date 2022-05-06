@@ -70,6 +70,8 @@ def send_email_user(request):
         five_persons = CoursesPay.objects.filter(id=5).first()
         CoursesPay.objects.filter(id=5).update(persons=five_persons.persons+1)
 
+    Users.objects.filter(pk=user_id).update(accredited_payment=True)
+
     context = {
         'price_pay': user.price_pay,
         'user': user,
