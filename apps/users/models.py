@@ -13,7 +13,7 @@ class Users(models.Model):
     state = models.CharField(max_length=50, null=True, blank=True)
     municipality = models.CharField(max_length=50, null=True, blank=True)
     phone_number = models.BigIntegerField(null=True, blank=True)
-    cell_phone_number = models.BigIntegerField(null=True, null=True, blank=True)
+    cell_phone_number = models.BigIntegerField(null=True, blank=True)
     company_institution = models.CharField(max_length=50, null=True, blank=True)
     specialty = models.CharField(max_length=50, null=True, blank=True)
     professional_license = models.CharField(max_length=255, null=True, blank=True)
