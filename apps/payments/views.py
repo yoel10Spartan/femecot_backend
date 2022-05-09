@@ -79,8 +79,7 @@ def send_email_user(request):
         'portada': 'https://congreso.icu/media/portada_photo.jpg'
     }
     
-    for i in range(10):
-        send_email(user.email, context)
+    send_email(user.email, context)
     
     return Response({'ok': True})
 
