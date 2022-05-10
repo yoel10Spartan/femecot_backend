@@ -43,7 +43,7 @@ def send_email(email_str: str, context: dict):
             settings.EMAIL_HOST_USER,
             [
                 email_str,
-                # 'femengi@yahoo.com.mx',
+                'femengi@yahoo.com.mx',
                 'contacto@ole-sfera.com',
                 'munozzecuayoel@gmail.com',
             ]
