@@ -1,4 +1,5 @@
 import os
+from telnetlib import STATUS
 from tkinter.messagebox import NO
 from unittest import result
 from django.http import HttpRequest, HttpResponse
@@ -6,6 +7,7 @@ from django.shortcuts import redirect
 from rest_framework.decorators import api_view, throttle_classes
 from rest_framework.response import Response
 from django.conf import settings
+from rest_framework import status
 
 import stripe
 from apps.courses.models import CoursesPay
@@ -45,6 +47,7 @@ def send_email(email_str: str, context: dict):
                 email_str,
                 'femengi@yahoo.com.mx',
                 'contacto@ole-sfera.com',
+                'franco@ole-sfera.com'
                 'munozzecuayoel@gmail.com',
             ]
         )
@@ -142,7 +145,7 @@ def create_checkout_session(request):
         
         return Response({'session': checkout_session['id']})
     except Exception as e:
-        return str(e)
+        return Response({'session': None}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def course_payment(request):
