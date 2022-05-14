@@ -12,12 +12,15 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Bursary',
+            name='Prices',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('code', models.CharField(max_length=10)),
-                ('invited_by', models.CharField(max_length=255, null=True)),
-                ('isActive', models.BooleanField(default=True)),
+                ('type', models.CharField(max_length=50)),
+                ('price', models.IntegerField()),
+                ('valid', models.DateField()),
+                ('starting', models.DateField()),
+                ('future_price', models.IntegerField()),
+                ('offer_expiration', models.BooleanField(default=False)),
             ],
         ),
     ]

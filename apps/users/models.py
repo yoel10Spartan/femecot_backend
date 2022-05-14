@@ -2,8 +2,6 @@ from statistics import mode
 from django.db import models
 from apps.invoices.models import Invoice
 
-from apps.courses.models import Course
-
 class Users(models.Model):
     name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -11,6 +9,7 @@ class Users(models.Model):
     address = models.CharField(max_length=255, null=True, blank=True)
     cp = models.IntegerField(null=True, blank=True)
     state = models.CharField(max_length=50, null=True, blank=True)
+    country = models.CharField(max_length=50, null=True, blank=True)
     municipality = models.CharField(max_length=50, null=True, blank=True)
     phone_number = models.BigIntegerField(null=True, blank=True)
     cell_phone_number = models.BigIntegerField(null=True, blank=True)
@@ -18,23 +17,7 @@ class Users(models.Model):
     specialty = models.CharField(max_length=50, null=True, blank=True)
     professional_license = models.CharField(max_length=255, null=True, blank=True)
     specialty_certificate = models.CharField(max_length=255, null=True, blank=True)
-    
     price_pay = models.BigIntegerField(null=True, default=0)
-    accredited_payment = models.BooleanField(default=False)
-    
-    course_pre = models.ForeignKey(
-        Course, 
-        on_delete=models.SET_NULL, 
-        null=True,
-        related_name='%(app_label)s_%(class)s_related_pre'
-    )
-    
-    course_trans = models.ForeignKey(
-        Course, 
-        on_delete=models.SET_NULL, 
-        null=True,
-        related_name='%(app_label)s_%(class)s_related_trans'
-    )
     
     invoice = models.ForeignKey(
         Invoice, 

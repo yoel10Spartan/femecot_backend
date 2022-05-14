@@ -18,9 +18,9 @@ BASE_APPS = [
 LOCAL_APPS = [
     'apps.users',
     'apps.invoices',
-    'apps.courses',
     'apps.bursary',
-    'apps.payments'
+    'apps.payments',
+    'apps.prices'
 ]
 
 THIRD_APPS = [

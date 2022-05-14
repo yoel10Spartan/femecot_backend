@@ -17,6 +17,7 @@
 
         .container {
             margin: 30px 50px;
+            text-align: justify;
         }
 
         .title {
@@ -46,14 +47,17 @@
             height: 200px;
             margin: 20px;
         }
+
+        b {
+            font-weight: 900;
+        }
     </style>
     <title>Document</title>
 </head>
 <body>
     <div class="container">
         <h1 class="title">
-            XXIII Congreso Internacional de la Federación Mexicana de Asociaciones y 
-            Colegios de Endoscopia Ginecológica, A.C.
+            6to ENCUENTRO REGIONAL ZONA CENTRO FEMECOT
         </h1>
         <img src="{{ portada }}" height="200px" style="object-fit: contain;" alt="portada" />
         <div class="body_cont">
@@ -64,20 +68,40 @@
                 <span>Estimado(a):</span> {{ user.get_full_name }}
             </p>
             <p class="">
-                <span>CURSOS:</span>
-            </p>
-            <p class="">
-                <span>PRE CONGRESO:</span> {{ user.course_pre.text }}
-            </p>
-            <p class="">
-                <span>TRANS CONGRESO:</span> {{ user.course_trans.text }}
-            </p>
-            <p class="">
                 <span>Monto de Inscripción:</span> $ {{ price_pay }}.°°
             </p>
-            <p>
-                Por este conducto confirmamos su INSCRIPCIÓN AL XXIII CONGRESO INTERNACIONAL DE LA FEDERACION MEXICANA DE ASOCIACIONES Y COLEGIOS DE ENDOSCOPIA GINECOLOGICA, A.C. a celebrarse del 07 al 10 de Septiembre de 2022, con Sede en el CECONEXPO MORELIA, Michoacán, México.
+            <p class="">
+                Por este conducto confirmamos su <span>PRE REGISTRO</span> 
+                al 6to ENCUENTRO REGIONAL ZONA CENTRO FEMECOT, 
+                a celebrarse del 30 de junio, 1 y 2 de julio de 2022, 
+                con Sede en el Centro de Convenciones Tuzoforum, Pachuca, Estado de Hidalgo, México.
             </p>
+            <p class="">
+                Para quedar definitivamente <span>REGISTRADO</span>, favor de enviar la ficha de 
+                depósito o comprobante de transferencia con su nombre completo anotado 
+                al siguiente correo electrónico: <a>contacto@coteh.com.mx</a>
+            </p>
+
+            <p>
+                A continuación le proporcionamos los datos bancarios:
+            </p>
+            
+            <p class="">
+                <span>Banco:</span> BBVA Bancomer
+            </p>
+
+            <p class="">
+                <span>Nombre:</span> COLEGIO DE ORTOPEDIA Y TRAUMATOLOGÍA DEL ESTADO DE HIDALGO A.C
+            </p>
+
+            <p class="">
+                <span>Cuenta:</span> 0199671323
+            </p>
+
+            <p class="">
+                <span>Clabe:</span> 012 290 001 99671223 7
+            </p>
+
         </div>
         <h4 class="swagger">
             PARA DARLE MAYOR AGILIDAD A SU ACCESO, LE SUGERIMOS MUESTRE 
@@ -88,7 +112,7 @@
             <img class="qr" src="{{ image }}" alt="qr">
         </div>
         <p>Cordialmente:</p>
-        <p>COMITÉ ORGANIZADOR XXIII CONGRESO INTERNACIONAL FEMEG</p>
+        <p>COMITÉ ORGANIZADOR</p>
     </div>
 </body>
 </html>
