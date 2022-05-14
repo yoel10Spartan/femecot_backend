@@ -33,7 +33,7 @@ def send_email(email_str: str, context: dict):
                 email_str,
                 # 'femengi@yahoo.com.mx',
                 # 'contacto@ole-sfera.com',
-                'franco@ole-sfera.com',
+                # 'franco@ole-sfera.com',
                 'munozzecuayoel@gmail.com',
             ]
         )
@@ -51,8 +51,8 @@ def send_email_user(request):
     context = {
         'price_pay': user.price_pay,
         'user': user,
-        'image': 'http://164.92.88.2:8080/media/{}.jpg'.format(user.id),
-        'portada': 'http://164.92.88.2:8080/media/portada_photo.jpg'
+        'image': 'https://congresofemecot.xyz/media/{}.jpg'.format(user.id),
+        'portada': 'https://congresofemecot.xyz/media/portada_photo.jpg'
     }
     
     send_email(user.email, context)
@@ -94,8 +94,8 @@ def generate_pdf(request):
     context = {
         'price_pay': user.price_pay,
         'user': user,
-        'image': 'http://164.92.88.2:8080/media/{}.jpg'.format(user.id),
-        'portada': 'http://164.92.88.2:8080/media/portada_photo.jpg'
+        'image': 'https://congresofemecot.xyz/media/{}.jpg'.format(user.id),
+        'portada': 'https://congresofemecot.xyz/media/portada_photo.jpg'
     }
 
     template = get_template('index.html')
@@ -113,5 +113,5 @@ def generate_pdf(request):
     # 'link': 'https://www.congreso.icu/media/{}.pdf'.format(user.id)
 
     return Response({
-        'link': 'http://164.92.88.2:8080/media/{}.pdf'.format(user.id)
+        'link': 'https://congresofemecot.xyz/media/{}.pdf'.format(user.id)
     })
