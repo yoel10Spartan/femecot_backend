@@ -51,8 +51,8 @@ def send_email_user(request):
     context = {
         'price_pay': user.price_pay,
         'user': user,
-        'image': 'https://congreso.icu/media/{}.jpg'.format(user.id),
-        'portada': 'https://congreso.icu/media/portada_photo.jpg'
+        'image': 'http://164.92.88.2:8080/media/{}.jpg'.format(user.id),
+        'portada': 'http://164.92.88.2:8080/media/portada_photo.jpg'
     }
     
     send_email(user.email, context)
@@ -94,8 +94,8 @@ def generate_pdf(request):
     context = {
         'price_pay': user.price_pay,
         'user': user,
-        'image': 'http://127.0.0.1:8080/media/{}.jpg'.format(user.id),
-        'portada': 'http://127.0.0.1:8080/media/portada.jpg'
+        'image': 'http://164.92.88.2:8080/media/{}.jpg'.format(user.id),
+        'portada': 'http://164.92.88.2:8080/media/portada.jpg'
     }
 
     template = get_template('index.html')
@@ -113,5 +113,5 @@ def generate_pdf(request):
     # 'link': 'https://www.congreso.icu/media/{}.pdf'.format(user.id)
 
     return Response({
-        'link': 'http://127.0.0.1:8080/media/{}.pdf'.format(user.id)
+        'link': 'http://164.92.88.2:8080/media/{}.pdf'.format(user.id)
     })
