@@ -153,8 +153,8 @@ from decouple import config
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'congresofemeg@gmail.com'
-EMAIL_HOST_PASSWORD = 'Eg5l%CHPFAHk'
+EMAIL_HOST_USER = 'congresosfemecot@gmail.com'
+EMAIL_HOST_PASSWORD = 'Ironic23'
 EMAIL_USE_TLS = True
 
 # EMAIL_USE_SSL = False

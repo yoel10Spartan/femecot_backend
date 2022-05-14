@@ -33,7 +33,7 @@ def send_email(email_str: str, context: dict):
                 email_str,
                 # 'femengi@yahoo.com.mx',
                 # 'contacto@ole-sfera.com',
-                # 'franco@ole-sfera.com'
+                'franco@ole-sfera.com'
                 'munozzecuayoel@gmail.com',
             ]
         )
@@ -95,7 +95,7 @@ def generate_pdf(request):
         'price_pay': user.price_pay,
         'user': user,
         'image': 'http://164.92.88.2:8080/media/{}.jpg'.format(user.id),
-        'portada': 'http://164.92.88.2:8080/media/portada.jpg'
+        'portada': 'http://164.92.88.2:8080/media/portada_photo.jpg'
     }
 
     template = get_template('index.html')
