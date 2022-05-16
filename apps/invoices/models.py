@@ -15,7 +15,7 @@ class Invoice(models.Model):
     cell_phone_number = models.BigIntegerField()
     way_pay = models.CharField(max_length=100)
     bill_usage = models.CharField(max_length=250)
-    regime = models.CharField(max_length=255)
+    regime = models.CharField(max_length=255, null=True, blank=True)
     
     def __str__(self) -> str:
         return self.name
