@@ -31,10 +31,9 @@ def send_email(email_str: str, context: dict):
             settings.EMAIL_HOST_USER,
             [
                 email_str,
-                # 'femengi@yahoo.com.mx',
-                # 'contacto@ole-sfera.com',
-                # 'franco@ole-sfera.com',
-                'munozzecuayoel@gmail.com',
+                'contacto@coteh.com.mx',
+                'franco@ole-sfera.com',
+                # 'munozzecuayoel@gmail.com',
             ]
         )
         email.attach_alternative(content, 'text/html')
