@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework import viewsets
 from apps.bursary.models import Bursary
 from apps.invoices.models import Invoice
+from apps.invoices.serializers import InvoiceSerializer
 from apps.prices.models import Prices
 
 from apps.users.models import Users
@@ -14,6 +15,9 @@ import qrcode
 import os
 
 from django.conf import settings
+from django.http import HttpResponse
+
+import xlsxwriter
 
 def create_qr(text, name):
     img = qrcode.make(text)
@@ -58,3 +62,95 @@ class UserViewSet(viewsets.ModelViewSet):
         user_serializer = UserSerializer(user.first())
         
         return Response(user_serializer.data, status=status.HTTP_200_OK)
+    
+class ExcelViewSet(viewsets.ModelViewSet):
+    queryset = Users.objects.all()
+    serializer_class = UserSerializer
+    
+    def list(self, request):
+        libro = xlsxwriter.Workbook('users.xls')
+        hoja = libro.add_worksheet()
+        
+        header = [
+            'id', 
+            'nombre', 
+            'apellidos', 
+            'correo electronico',
+            'dirección',
+            'cp',
+            'estado',
+            'pais',
+            'municipio o alcaldía',
+            'telefono',
+            'celular',
+            'empresa o institución',
+            'especialidad',
+            'cédula profesional',
+            'cédula de especialidad',
+            'costo de inscripcción',
+            'nombre o razon social',
+            'rfc',
+            'calle',
+            'numero exterior',
+            'numero interior',
+            'colonia',
+            'cp',
+            'municipio o alcaldia',
+            'estado',
+            'correo de facturacion',
+            'telefono de facturación',
+            'forma de pago',
+            'uso de la factura',
+            'regime'
+        ]
+        
+        row = 0
+        col = 0
+        
+        for i in header:
+            hoja.write(row, col, i)
+            col+=1
+        
+        queryset_update = Users.objects.all()
+        
+        data = self.serializer_class(queryset_update, many=True)
+        
+        users_data = []
+        
+        for i in data.data:
+            data_user = []
+            for j in i:
+                data_user.append(i[j])
+                
+            invoice_user_id = data_user.pop()
+            
+            if invoice_user_id:
+                invoice = Invoice.objects.filter(pk=invoice_user_id).first()
+                invoice_serializer = InvoiceSerializer(invoice)
+                
+                for i in invoice_serializer.data:
+                    data_user.append(invoice_serializer.data[i])
+                
+            users_data.append(data_user)
+            
+        row = 1
+        col = 0
+            
+        for _user_data in users_data:
+            col = 0
+            for i in _user_data:
+                hoja.write(row, col, i)
+                col+=1
+            row+=1
+        
+        libro.close()
+        
+        file_path = os.getcwd() + '/users.xls'
+        
+        with open(file_path, 'rb') as f:
+           file_data = f.read()
+        
+        response = HttpResponse(file_data, content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        response['Content-Disposition'] = 'attachment; filename=usuarios.xls'
+
+        return response
