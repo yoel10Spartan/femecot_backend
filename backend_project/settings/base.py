@@ -150,12 +150,22 @@ from decouple import config
 # EMAIL_HOST_PASSWORD = 'Paranoolvidar2020.'
 # EMAIL_USE_TLS = True
 
+# django.core.mail.backends.smtp.EmailBackend
+
+# EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 465
+# EMAIL_HOST_USER = 'congresosfemecot@gmail.com'
+# EMAIL_HOST_PASSWORD = 'Ironic23'
+# EMAIL_USE_TLS = True
+
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'congresosfemecot@gmail.com'
-EMAIL_HOST_PASSWORD = 'Ironic23'
+EMAIL_HOST_PASSWORD = 'kdhfjzjnvwrskioo'
 EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 # EMAIL_USE_SSL = False
 
